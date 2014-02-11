@@ -1,0 +1,123 @@
+<project name="Selenium tests">
+  <!-- The tests should only depend on three libraries: Selenium, TestNG and the MySQL Java Connector. -->
+  <property name="ant.dir" location="/ant-1.7.0" />
+  <echo message="Ant directory: ${ant.dir}" />
+
+  <property name="lib.ant.dir" location="${ant.dir}/lib" />
+  <echo message="Ant lib directory: ${lib.ant.dir}" />
+
+  <!-- define TestNG location -->
+  <path id="lib.testng">
+    <fileset dir="${lib.ant.dir}" includes="testng-5.11-jdk15.jar"/>
+  </path>
+  <taskdef resource="testngtasks" classpathref="lib.testng" />
+  
+  <!-- define Java connector location -->
+  <property name="lib.mysql.connector" location="/mysql_connector" />
+  
+  <!-- use the Antelope if task rather than the standard Ant one -->
+  <taskdef name="iftest" classname="ise.antelope.tasks.IfTask" 
+    classpath="${ant.dir}/antelope/AntelopeApp_3.1.9.jar" />
+  
+  <!-- define source location -->
+  <property name="src.selenium-tests.dir" location="../src/selenium" />
+  
+  <!-- Compile tests -->
+  <target name="compile-selenium-tests">
+    <!-- Create the classes directory if it doesn't exist -->
+    <iftest>
+      <bool>
+        <available file="classes" type="dir" />
+      </bool>
+      <echo message="Classes directory already exists" />
+      <else>
+        <echo message="Classes directory does not exist, creating..." />
+        <mkdir dir="classes" />  
+      </else>
+    </iftest>
+    <!-- CruiseControl seems to have problems picking up a Windows environment -->
+    <!-- variable to say where the javac compiler is, -->
+    <!-- so if we set fork="yes" then we can specify the location with -->
+    <!-- the executable parameter. -->
+    <javac srcdir="${src.selenium-tests.dir}" destdir="classes" fork="yes" 
+	  executable="C:\usr\java\jdk1.6.0_06\bin\javac.exe" >
+      <classpath>  
+        <fileset dir="${lib.ant.dir}" includes="selenium-server-standalone-2.0b3.jar"/>
+        <fileset dir="${lib.ant.dir}" includes="testng-5.11-jdk15.jar"/>
+        <fileset dir="${lib.mysql.connector}" includes="mysql-connector-java-5.0.8-bin.jar" />
+      </classpath>
+    </javac>
+  </target>
+  
+  <!-- Targets to start and stop the Selenium RC server. Taken from the Selenium documentation -->
+  <!-- http://wiki.openqa.org/display/SRC/Selenium-RC+and+Continuous+Integration -->  
+  <target name="start-selenium-server">
+    <echo message="Starting Selenium RC server (runs as a separate process)" />
+    <!-- To make it easier to see if the Selenium RC server is running, we copy the -->
+    <!-- normal java.exe to create a different executable called -->
+    <!-- javaSeleniumRCServer.exe. That way, if you list the processes Windows is running -->
+    <!-- you can see if the Selenium RC server is running, rather than just seeing a -->
+    <!-- process called "java". -->
+    <java jar="${lib.ant.dir}/selenium-server-standalone-2.0b3.jar" fork="true" 
+	  spawn="true" jvm="javaSeleniumRCServer">
+      <!-- Enable logging for the Selenium server -->
+      <arg line="-log selenium.log -browserSideLog"/>
+    </java>
+  </target>
+  
+  <target name="stop-selenium-server">
+    <echo message="Stopping Selenium RC server" />
+      <get taskname="selenium-shutdown" 
+	    src="http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer"
+        dest="result.txt" ignoreerrors="true" />
+      <echo taskname="selenium-shutdown" message="DGF Errors during shutdown are expected" />
+  </target>
+  
+  <!-- Run tests. -->
+  <target name="run-selenium-tests" depends="compile-selenium-tests">
+    
+      <property name="build.classes.dir" location="classes" />
+    
+      <!-- Start the Selenium RC server -->
+      <antcall target="start-selenium-server" />
+      
+      <echo message="Running Selenium Tests." />
+      <!-- Put the output in the same place as our other tests -->
+      <!-- We don't want to immediately fail the build if the tests fail, as we -->
+      <!-- need to stop the Selenium server, so we set the property testsFailed -->
+      <!-- and check that AFTER we have stopped the Selenium RC server. -->
+      <testng outputdir="test-output" haltonfailure="false" 
+	    haltonskipped="false" failureProperty="testsFailed">
+        <!-- Compiled classes are in the build/classes directory -->
+        <classpath>
+           <pathelement location="${build.classes.dir}" />
+          <fileset dir="${lib.ant.dir}" includes="selenium-server-standalone-2.0b3.jar"/>
+          <fileset dir="${lib.ant.dir}" includes="testng-5.11-jdk15.jar"/>
+          <fileset dir="${lib.mysql.connector}" includes="mysql-connector-java-5.0.8-bin.jar" />
+        </classpath>
+        <!-- List of tests to be run is in the testng.xml file in the src/system_tests/selenium directory -->
+        <xmlfileset dir="${src.selenium-tests.dir}" includes="testng.xml"/>
+      </testng>
+      
+      <!-- Stop the Selenium RC server -->
+      <antcall target="stop-selenium-server" />
+      
+      <!-- CruiseControl needs the test results in JUnit format, it can't read TestNG output. -->
+      <!-- However, TestNG comes with an Ant command called junitreport that will conver the output. -->
+      <mkdir dir="${base_dir}/unit_tests"/>
+      <junitreport todir="${base_dir}/unit_tests">
+        <fileset dir="${base_dir}/build/test-output">
+          <include name="*/*.xml"/>
+          <exclude name="*/testng-failed.xml"/>        
+        </fileset>        
+        <report format="noframes"  todir="${base_dir}/unit_tests"/>
+      </junitreport>
+
+      <!-- Check the flag set by TestNG and fail the build if we had test failures. -->
+      <!-- Unfortunately using this mechanism it looks like we can't check for -->
+	  <!-- skips, only failures. -->
+      <iftest name="testsFailed" exists="true">
+        <fail message="Test failures."/>
+      </iftest>
+  </target>
+</project>
