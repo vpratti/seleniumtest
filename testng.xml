@@ -1,8 +1,13 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="false">
   <test name="Test">
-    <classes>
+    <!--<classes>
       <class name="com.presto.driver.MainDriver.java"/>
-    </classes>
+    </classes> -->
+     <packages>
+      <package name="com.presto.testscripts" />
+     </packages>
+    
+    
   </test> <!-- Test -->
 </suite> <!-- Suite -->
