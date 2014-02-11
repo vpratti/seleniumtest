@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="50367" started-at="2014-02-10T18:59:49Z" finished-at="2014-02-10T19:00:39Z">
+  <suite name="Default suite" duration-ms="21861" started-at="2014-02-11T15:36:34Z" finished-at="2014-02-11T15:36:56Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="50367" started-at="2014-02-10T18:59:49Z" finished-at="2014-02-10T19:00:39Z">
-      <class name="com.presto.testscripts.PRST_STRBLG_005">
-        <test-method status="PASS" signature="PRST_STRBLG_005()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_005@ae854ec]" name="PRST_STRBLG_005" duration-ms="50351" started-at="2014-02-10T13:59:49Z" finished-at="2014-02-10T14:00:39Z">
+    <test name="Default test" duration-ms="21861" started-at="2014-02-11T15:36:34Z" finished-at="2014-02-11T15:36:56Z">
+      <class name="com.presto.testscripts.PRST_CONT_001">
+        <test-method status="PASS" signature="PRST_CONT_001()[pri:0, instance:com.presto.testscripts.PRST_CONT_001@4f7ceeaa]" name="PRST_CONT_001" duration-ms="21840" started-at="2014-02-11T10:36:34Z" finished-at="2014-02-11T10:36:56Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- PRST_STRBLG_005 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_005 -->
+        </test-method> <!-- PRST_CONT_001 -->
+      </class> <!-- com.presto.testscripts.PRST_CONT_001 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

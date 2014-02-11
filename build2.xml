@@ -1,11 +1,11 @@
-<project name="Selenium tests">
+<project name="Selenium tests" default="" basedir=".">
   <!-- The tests should only depend on three libraries: Selenium, TestNG and the MySQL Java Connector. -->
-  <property name="ant.dir" location="/ant-1.7.0" />
-  <echo message="Ant directory: ${ant.dir}" />
-
-  <property name="lib.ant.dir" location="${ant.dir}/lib" />
-  <echo message="Ant lib directory: ${lib.ant.dir}" />
-
+	
+	<property name="build.dir" 			value="${basedir}\build"/>
+	<property name="lib.dir" 			value="${basedir}\lib"/>
+	<property name="src.dir" 		value="${basedir}\src"/>
+	<property name="testNg.dir" 		value="${basedir}\TestNG"/>
+		
   <!-- define TestNG location -->
   <path id="lib.testng">
     <fileset dir="${lib.ant.dir}" includes="testng-5.11-jdk15.jar"/>

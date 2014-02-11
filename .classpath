@@ -61,5 +61,6 @@
 	<classpathentry kind="lib" path="C:/Presto/Presto/jars/poi-3.9/poi-ooxml-schemas-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="C:/Presto/Presto/jars/poi-3.9/poi-scratchpad-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="C:/Users/vpratty/Documents/selenium-server-standalone-2.39.0.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse/plugins/org.testng.eclipse_6.8.6.20141201_2240/lib/testng.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
