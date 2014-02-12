@@ -1,5 +1,5 @@
 <project name="Presto Selenium Tests" basedir="." default="run">
-
+	<echo message="${arg0}"/>
 	<!-- Initializing Properties -->
 	<property environment="env" />
 

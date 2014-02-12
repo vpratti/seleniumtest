@@ -22,6 +22,7 @@ public class CommonFunctions
 		AppProperties app = new AppProperties();
 		environment = app.getEnvironment();	
 		
+		
 		//Set object IDs
 		if(environment.equalsIgnoreCase("dev"))
 		{
@@ -49,15 +50,18 @@ public class CommonFunctions
 		action.moveToElement(adminSelection).click(adminSelection).build().perform();
 		
 		//2.) Input User and Password
-		WebElement txtUser = driver.findElement(By.name(txtUserID));
+		WebElement txtUser = driver.findElement(By.cssSelector("[id$='txtUsername']"));
+		//WebElement txtUser = driver.findElement(By.name(txtUserID));
 		txtUser.clear();
 		txtUser.sendKeys(userName);
-		WebElement txtPassword = driver.findElement(By.name(txtPasswordID));
+		WebElement txtPassword = driver.findElement(By.cssSelector("[id$='txtPassword']"));
+		//WebElement txtPassword = driver.findElement(By.name(txtPasswordID));
 		txtPassword.clear();
 		txtPassword.sendKeys(password);
 		
 		//3.) Press the Login Button
-		WebElement loginButton = driver.findElement(By.id(btnLoginID));
+		WebElement loginButton = driver.findElement(By.cssSelector("[id$='cmdLogin']"));
+		//WebElement loginButton = driver.findElement(By.id(btnLoginID));
 		loginButton.click();		
 	}
 

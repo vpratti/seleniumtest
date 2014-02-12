@@ -1,53 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="7" passed="7">
+<testng-results skipped="0" failed="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="433200" started-at="2014-02-11T19:19:49Z" finished-at="2014-02-11T19:27:03Z">
+  <suite name="Suite1" duration-ms="4" started-at="2014-02-12T21:14:57Z" finished-at="2014-02-12T21:14:57Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="433200" started-at="2014-02-11T19:19:49Z" finished-at="2014-02-11T19:27:03Z">
-      <class name="com.presto.testscripts.PRST_STRBLG_199">
-        <test-method status="PASS" signature="PRST_STRBLG_199()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_199@32f692ea]" name="PRST_STRBLG_199" duration-ms="36927" started-at="2014-02-11T14:21:28Z" finished-at="2014-02-11T14:22:05Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_199 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_199 -->
-      <class name="com.presto.testscripts.PRST_STRBLG_316">
-        <test-method status="PASS" signature="PRST_STRBLG_316()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_316@62caa55]" name="PRST_STRBLG_316" duration-ms="170039" started-at="2014-02-11T14:24:13Z" finished-at="2014-02-11T14:27:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_316 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_316 -->
-      <class name="com.presto.testscripts.PRST_STRBLG_005">
-        <test-method status="PASS" signature="PRST_STRBLG_005()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_005@497fcfe1]" name="PRST_STRBLG_005" duration-ms="45242" started-at="2014-02-11T14:20:42Z" finished-at="2014-02-11T14:21:28Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_005 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_005 -->
-      <class name="com.presto.testscripts.PRST_STRBLG_219">
-        <test-method status="PASS" signature="PRST_STRBLG_219()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_219@6628e279]" name="PRST_STRBLG_219" duration-ms="74955" started-at="2014-02-11T14:22:05Z" finished-at="2014-02-11T14:23:20Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_219 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_219 -->
-      <class name="com.presto.testscripts.PRST_STRBLG_309">
-        <test-method status="PASS" signature="PRST_STRBLG_309()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_309@4db9705c]" name="PRST_STRBLG_309" duration-ms="52923" started-at="2014-02-11T14:23:20Z" finished-at="2014-02-11T14:24:13Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_309 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_309 -->
-      <class name="com.presto.testscripts.PRST_CONT_001">
-        <test-method status="PASS" signature="PRST_CONT_001()[pri:0, instance:com.presto.testscripts.PRST_CONT_001@203f85c7]" name="PRST_CONT_001" duration-ms="20420" started-at="2014-02-11T14:19:49Z" finished-at="2014-02-11T14:20:10Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_CONT_001 -->
-      </class> <!-- com.presto.testscripts.PRST_CONT_001 -->
-      <class name="com.presto.testscripts.PRST_STRBLG_002">
-        <test-method status="PASS" signature="PRST_STRBLG_002()[pri:0, instance:com.presto.testscripts.PRST_STRBLG_002@5a275ac9]" name="PRST_STRBLG_002" duration-ms="32683" started-at="2014-02-11T14:20:10Z" finished-at="2014-02-11T14:20:42Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- PRST_STRBLG_002 -->
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_002 -->
+    <test name="Test" duration-ms="4" started-at="2014-02-12T21:14:57Z" finished-at="2014-02-12T21:14:57Z">
     </test> <!-- Test -->
-  </suite> <!-- Suite -->
+  </suite> <!-- Suite1 -->
 </testng-results>

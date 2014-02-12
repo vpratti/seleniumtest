@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite name="Failed suite [Suite]" parallel="true">
+  <test name="Test(failed)" parallel="true">
     <classes>
-      <class name="com.presto.testscripts.PRST_STRBLG_199">
+      <class name="com.presto.testscripts.PRST_STRBLG_309">
         <methods>
-          <include name="PRST_STRBLG_199"/>
+          <include name="PRST_STRBLG_309"/>
         </methods>
-      </class> <!-- com.presto.testscripts.PRST_STRBLG_199 -->
+      </class> <!-- com.presto.testscripts.PRST_STRBLG_309 -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
