@@ -30,7 +30,7 @@ public class PRST_STRBLG_219
 	String resultMessage = "";
 	ExcelLibrary excel = null;
 	
-	@Test
+	@Test(groups = { "BlogCreationTest", "RegressionTest" })
 	public void PRST_STRBLG_219() throws Exception
 	{
 		String testName = getClass().getSimpleName();

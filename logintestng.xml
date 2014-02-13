@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Login Test Suite">
+    <test name="Test">
+	    <groups>
+		    <run>
+				<include name="LoginTest" />
+		    </run>
+		</groups>
+		<packages>
+		    <package name="com.presto.testscripts" />
+		</packages>
+    </test>
+</suite>

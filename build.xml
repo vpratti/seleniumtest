@@ -1,27 +1,30 @@
 <project name="Presto Selenium Tests" basedir="." default="run">
-	<echo message="${arg0}"/>
+	
 	<!-- Initializing Properties -->
 	<property environment="env" />
 
 	<property name="ws.home" value="${basedir}" />
 	<property name="ws.jars" value="${basedir}\lib" />
-	<property name="test.dest" value="${ws.home}\build" />
-	<property name="test.src" value="${ws.home}\src" />
+	<property name="compile.dest" value="${ws.home}\build" />
+	<property name="compile.src" value="${ws.home}\src" />
 	<property name="ng.result" value="test-output" />
+	
+	<!-- REPLACE REPLACE with parameter from teamcity -->
+	<property name="testconfig" value="logintestng.xml" />
 
 	<target name="clean">
-		<delete dir="${test.dest}" />
+		<delete dir="${compile.dest}" />
 	</target>
 
 	<target name="prepare" depends="clean">
-		<mkdir dir="${test.dest}" />
-		<copy file="${basedir}\testng.xml" todir="${test.dest}" />
+		<mkdir dir="${compile.dest}" />
+		<copy file="${basedir}\testng.xml" todir="${compile.dest}" />
 	</target>
 	
 	<target name="setClassPath" unless="test.classpath" depends="clean">
 		<path id="classpath_jars">
 			<fileset dir="${ws.jars}" includes="*.jar" />
-			<pathelement location="${test.dest}"/>
+			<pathelement location="${compile.dest}"/>
 			<fileset dir="${ws.home}" includes="testng.xml"/>
 		</path>
 		<pathconvert pathsep=":" property="test.classpath" refid="classpath_jars" />
@@ -41,14 +44,18 @@
 
 	<target name="compile" depends="init">
 		<delete includeemptydirs="true" quiet="true">
-			<fileset dir="${test.dest}" includes="**/*" />
+			<fileset dir="${compile.dest}" includes="**/*" />
 		</delete>
-		<mkdir dir="${test.dest}" />
-		<copy file="${basedir}\testng.xml" todir="${test.dest}" />
+		<mkdir dir="${compile.dest}" />
+		
+		<copy todir="${compile.dest}">
+		  <fileset dir="${basedir}" includes="*testng.xml" />
+		</copy>
+		
 		<echo message="making directory ..." />
 		<echo message="classpath --------: ${test.classpath}" />
 		<echo message="compiling -------" />
-		<javac debug="on" fork="true" includeantruntime="false" destdir="${test.dest}" srcdir="${test.src}"  source="1.5" target="1.5" classpath="${test.classpath}">
+		<javac debug="on" fork="true" includeantruntime="false" destdir="${compile.dest}" srcdir="${compile.src}"  source="1.5" target="1.5" classpath="${test.classpath}">
 			<classpath>
 				<path refid="classpath_jars"/>
 			</classpath>
@@ -56,8 +63,8 @@
 	</target>
 	
 	<target name="run" depends="compile">
-	    <testng classpath="${test.classpath}:${test.dest}" suitename="Suite1">
-			<xmlfileset dir="${ws.home}" includes="testng.xml"/>
+	    <testng classpath="${test.classpath}:${compile.dest}" suitename="Suite1">
+			<xmlfileset dir="${compile.dest}" includes="${testconfig}"/>
 		</testng>
 	</target>
 </project>
